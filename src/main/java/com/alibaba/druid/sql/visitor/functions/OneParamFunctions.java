@@ -23,6 +23,7 @@ import com.alibaba.druid.util.Utils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 
 import static com.alibaba.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE;
 import static com.alibaba.druid.sql.visitor.SQLEvalVisitor.EVAL_VALUE_NULL;
@@ -61,7 +62,7 @@ public class OneParamFunctions implements Function {
 
             if (paramValue instanceof BigDecimal) {
                 BigDecimal decimal = (BigDecimal) paramValue;
-                BigInteger bigInt = decimal.setScale(0,  BigDecimal.ROUND_HALF_UP).toBigInteger();
+                BigInteger bigInt = decimal.setScale(0, RoundingMode.HALF_UP).toBigInteger();
                 return bigInt.bitCount();
             }
             Long val = SQLEvalVisitorUtils.castToLong(paramValue);

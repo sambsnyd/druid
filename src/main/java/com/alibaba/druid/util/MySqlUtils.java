@@ -25,6 +25,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.nio.charset.Charset;
 import java.sql.*;
 import java.text.DateFormat;
@@ -781,7 +782,7 @@ public class MySqlUtils {
 
         int v_precision;
         if (v_scale > scale) {
-            value = value.setScale(scale, BigDecimal.ROUND_HALF_UP);
+            value = value.setScale(scale, RoundingMode.HALF_UP);
             v_precision = value.precision();
         } else {
             v_precision = value.precision();

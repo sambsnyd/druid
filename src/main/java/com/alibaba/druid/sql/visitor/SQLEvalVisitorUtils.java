@@ -37,6 +37,7 @@ import com.alibaba.druid.wall.spi.WallVisitorUtils.WallConditionContext;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -1469,7 +1470,7 @@ public class SQLEvalVisitorUtils {
             try {
                 return decimalA.divide(decimalB);
             } catch (ArithmeticException ex) {
-                return decimalA.divide(decimalB, BigDecimal.ROUND_HALF_UP);
+                return decimalA.divide(decimalB, RoundingMode.HALF_UP);
             }
         }
 
